@@ -59,13 +59,5 @@ image_API
 └── README.md
 
 
-
-## ⚙️ How to Run
-
-Follow these steps to get the project running locally:
-
-### 1. Clone the Repository
-Open your terminal or PowerShell and run:
-```bash
-git clone [https://github.com/shahedul-islam-joshi/CRUD-ASP.NET-MVC.git](https://github.com/shahedul-islam-joshi/CRUD-ASP.NET-MVC.git)
+hedul-islam-joshi/CRUD-ASP.NET-MVC.git](https://github.com/shahedul-islam-joshi/CRUD-ASP.NET-MVC.git)
 cd CRUD-ASP.NET-MVC
