@@ -1,0 +1,55 @@
+﻿@model image_API.Models.ViewModels.EditHumanViewModel
+
+@{
+    ViewData["Title"] = "Edit Human";
+}
+
+<h2>Edit Human</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Gender" class="form-label"></label>
+        <select asp-for="Gender" class="form-control">
+            <option value="">-- Select Gender --</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Current Picture</label><br />
+        @if (Model.ExistingProfilePicture != null)
+        {
+            <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ExistingProfilePicture)"
+                 width="100" height="100"
+                 style="object-fit:cover;border-radius:50%;" />
+        }
+        else
+        {
+            <span>No Image</span>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ProfileImage" class="form-label"></label>
+        <input asp-for="ProfileImage" type="file" class="form-control" />
+        <small class="text-muted">Leave empty to keep existing image</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a asp-action="List" class="btn btn-secondary">Back</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,76 @@
+﻿@model image_API.Models.ViewModels.AddHumanViewModel
+
+@{
+    ViewData["Title"] = "Add Human";
+}
+
+<h2>Add Human</h2>
+
+<form asp-action="Add" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Gender" class="form-label"></label>
+        <select asp-for="Gender" class="form-control">
+            <option value="">-- Select Gender --</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ProfileImage">Upload Image</label>
+        <input asp-for="ProfileImage" id="imageUpload" class="form-control" type="file" />
+        <span asp-validation-for="ProfileImage" class="text-danger"></span>
+
+        <img id="imagePreview" style="display:none; width:200px" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Image URL</label>
+        <input type="text" class="form-control" id="imageUrlInput" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="List" class="btn btn-secondary">Back</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        const UploadElement = document.getElementById('imageUpload');
+        const ImageUrlElement = document.getElementById('imageUrlInput');
+        const ImageDisplayElement = document.getElementById('imagePreview');
+
+        async function UploadImage(e) {
+            let data = new FormData();
+            data.append('file', e.target.files[0]);
+
+            try {
+                const response = await fetch('/api/image', {
+                    method: 'POST',
+                    headers: { 'Accept': '*/*' },
+                    body: data
+                });
+
+                const result = await response.json();
+
+                ImageUrlElement.value = result.link;
+                ImageDisplayElement.src = result.link;
+                ImageDisplayElement.style.display = 'block';
+            }
+            catch (error) {
+                console.error('Upload failed:', error);
+            }
+        }
+
+        UploadElement.addEventListener('change', UploadImage);
+    </script>
+}

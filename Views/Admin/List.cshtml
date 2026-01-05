@@ -1,0 +1,62 @@
+﻿@model List<image_API.Models.Domain.Human>
+
+@{
+    ViewData["Title"] = "Human List";
+}
+
+<h2>Human List</h2>
+
+<a asp-action="Add" class="btn btn-success mb-3">Add New</a>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning">
+        ⚠️ No records found.
+    </div>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Picture</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var human in Model)
+        {
+            <tr>
+                <td>
+                    @if (human.ProfilePicture != null)
+                    {
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(human.ProfilePicture)"
+                             width="80" height="80" style="object-fit:cover;border-radius:50%;" />
+                    }
+                    else
+                    {
+                        <span>No Image</span>
+                    }
+                </td>
+                <td>@human.Name</td>
+                <td>@human.Gender</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@human.Id"
+                       class="btn btn-warning btn-sm">Edit</a>
+
+                    <form asp-action="Delete" asp-route-id="@human.Id"
+                          method="post" style="display:inline;">
+                        <button type="submit"
+                                class="btn btn-danger btn-sm"
+                                onclick="return confirm('Are you sure?');">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
