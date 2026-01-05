@@ -57,7 +57,3 @@ image_API
 ├── appsettings.json
 ├── Program.cs
 └── README.md
-
-
-hedul-islam-joshi/CRUD-ASP.NET-MVC.git](https://github.com/shahedul-islam-joshi/CRUD-ASP.NET-MVC.git)
-cd CRUD-ASP.NET-MVC
