@@ -1,11 +1,11 @@
-# 📸 Image Upload with Cloudinary – ASP.NET Core MVC + Web API
+#  Image Upload with Cloudinary – ASP.NET Core MVC + Web API
 
 This project is an **ASP.NET Core MVC application** integrated with a **Web API** that uploads images to **Cloudinary**.  
 It demonstrates full **CRUD operations**, **image upload**, **Cloudinary integration**, and **clean architecture using Repository Pattern**.
 
 ---
 
-## 🚀 Features
+##  Features
 
 - **Add Human**: Save name, gender, and profile picture.
 - **Cloudinary Integration**: Upload images via a dedicated Web API.
@@ -16,7 +16,7 @@ It demonstrates full **CRUD operations**, **image upload**, **Cloudinary integra
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 - **Framework**: ASP.NET Core 8.0 (MVC & Web API)
 - **Database**: SQL Server (Entity Framework Core)
@@ -25,7 +25,7 @@ It demonstrates full **CRUD operations**, **image upload**, **Cloudinary integra
 
 ---
 
-## 📁 Project Folder Structure
+##  Project Folder Structure
 
 ```text
 image_API
