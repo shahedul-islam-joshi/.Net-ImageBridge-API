@@ -26,34 +26,34 @@ It demonstrates full **CRUD operations**, **image upload**, **Cloudinary integra
 ---
 
 ##  Project Folder Structure
-
-```text
-image_API
+```
+image_API/
+├──  Controllers/
+│   ├── AdminController.cs      # Handles Web UI logic (Returning Views for Add/Edit/List).
+│   └── ImageController.cs      # API Endpoint for image processing (returns JSON/data).
 │
-├── Controllers
-│   ├── AdminController.cs      # MVC Logic
-│   └── ImageController.cs      # API Logic
+├──  Data/
+│   └── HumanDbContext.cs       # Entity Framework Core context; manages SQL Server connection.
 │
-├── Data
-│   └── HumanDbContext.cs       # SQL Database Context
+├──  ImageRepository/          # Abstraction Layer for Image Handling
+│   ├── IImageRepo.cs           # Contract defining image operations (Upload, Delete, etc.).
+│   └── CloudinaryImageRepo.cs  # Third-party implementation for Cloudinary cloud storage.
 │
-├── ImageRepository
-│   ├── IImageRepo.cs           # Interface
-│   └── CloudinaryImageRepo.cs  # Implementation
+├──  Models/
+│   ├── Domain/                 # Enterprise/Database Entities
+│   │   └── Human.cs            # Maps directly to the SQL database table.
+│   └── ViewModels/             # Data Transfer Objects (DTOs) for UI
+│       ├── AddHumanViewModel.cs   # Form data required for creating a record.
+│       └── EditHumanViewModel.cs  # Data required for updating existing records.
 │
-├── Models
-│   ├── Domain
-│   │   └── Human.cs            # Database Entity
-│   └── ViewModels
-│       ├── AddHumanViewModel.cs
-│       └── EditHumanViewModel.cs
+├──  Views/                   # Razor Pages for the Admin Dashboard
+│   └── Admin/
+│       ├── Add.cshtml          # Form to create new "Human" entries.
+│       ├── List.cshtml         # Data table to display all records.
+│       └── Edit.cshtml         # Form to modify existing entries.
 │
-├── Views
-│   └── Admin
-│       ├── Add.cshtml
-│       ├── List.cshtml
-│       └── Edit.cshtml
-│
-├── appsettings.json
-├── Program.cs
-└── README.md
+├──  Configuration/
+│   ├── appsettings.json        # Stores Connection Strings and Cloudinary API Keys.
+│   ├── Program.cs              # Application startup; handles Dependency Injection (DI) registration.
+│   └── README.md               # Project documentation and setup guide.
+```
